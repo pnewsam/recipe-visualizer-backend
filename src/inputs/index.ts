@@ -1,2 +1,2 @@
-export * from "./CreateIngredientInput";
-export * from "./UpdateIngredientInput";
+export * from "./CreateRecipeInput";
+export * from "./UpdateRecipeInput";
