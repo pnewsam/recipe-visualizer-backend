@@ -1,11 +1,13 @@
 import { ObjectType, Field, ID } from "type-graphql";
 import {
-  Entity,
   BaseEntity,
-  PrimaryGeneratedColumn,
   Column,
+  Entity,
+  ManyToOne,
   OneToMany,
+  PrimaryGeneratedColumn,
 } from "typeorm";
+import { GroceryCategory } from "./GroceryCategory";
 import { Ingredient } from "./Ingredient";
 
 @Entity()
@@ -19,7 +21,14 @@ export class Food extends BaseEntity {
   @Column("varchar")
   name: string;
 
-  @Field(() => Array)
+  @Field(() => [Ingredient])
   @OneToMany((type) => Ingredient, (ingredient) => ingredient.food)
   ingredients: Ingredient[];
+
+  @Field(() => [GroceryCategory])
+  @ManyToOne(
+    (type) => GroceryCategory,
+    (groceryCategory) => groceryCategory.foods
+  )
+  groceryCategory: GroceryCategory;
 }

@@ -1,7 +1,7 @@
 {
   "name": "recipe-visualizer-backend",
   "version": "0.0.1",
-  "description": "Awesome project developed with TypeORM.",
+  "description": "Recipe visualizer backend built with Apollo Server, TypeORM, and Type-GraphQL.",
   "devDependencies": {
     "@types/node": "^8.0.29",
     "nodemon": "^2.0.7",
@@ -17,6 +17,7 @@
     "typeorm": "0.2.32"
   },
   "scripts": {
-    "start": "nodemon -w src --ext ts --exec ts-node src/index.ts"
+    "start": "nodemon -w src --ext ts --exec ts-node src/index.ts",
+    "db:diagram": "typeorm-uml ormconfig.json"
   }
 }
