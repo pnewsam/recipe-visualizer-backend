@@ -1,19 +1,19 @@
 import { ObjectType, Field, ID } from "type-graphql";
 import {
-  BaseEntity,
-  Column,
   Entity,
-  ManyToOne,
-  OneToMany,
+  BaseEntity,
   PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
 } from "typeorm";
-import { Recipe } from "./Recipe";
-import { Food } from "./Food";
 import { IngredientMeasure } from "./IngredientMeasure";
 
 @Entity()
 @ObjectType()
-export class Ingredient extends BaseEntity {
+export class Measure extends BaseEntity {
+  // ie. Tablespoon, teaspoon
+  // Cup,
+  // Number of items
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: string;
@@ -22,15 +22,7 @@ export class Ingredient extends BaseEntity {
   @Column("varchar")
   name: string;
 
-  @Field(() => Recipe)
-  @ManyToOne((type) => Recipe, (recipe) => recipe.ingredients)
-  recipe: Recipe;
-
-  @Field(() => Food)
-  @ManyToOne((type) => Food, (food) => food.ingredients)
-  food: Food;
-
-  @Field(() => IngredientMeasure)
+  @Field(() => [IngredientMeasure])
   @OneToMany(
     (type) => IngredientMeasure,
     (ingredientMeasure) => ingredientMeasure.ingredient
